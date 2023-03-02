@@ -1,10 +1,10 @@
 {
-  "name": "giftpickr-web",
+  "name": "giftpickr",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "add-page": "ng g m pages/page-name --routing && ng g component pages/page-name --skip-tests"

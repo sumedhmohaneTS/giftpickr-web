@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "EasyAngular": {
+    "giftpickr": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/giftpickr-web",
+            "outputPath": "dist/giftpickr",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "EasyAngular:build:production"
+              "browserTarget": "giftpickr:build:production"
             },
             "development": {
-              "browserTarget": "EasyAngular:build:development"
+              "browserTarget": "giftpickr:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "EasyAngular:build"
+            "browserTarget": "giftpickr:build"
           }
         },
         "test": {
