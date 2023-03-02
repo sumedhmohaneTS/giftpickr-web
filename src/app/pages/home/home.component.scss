@@ -1,0 +1,46 @@
+@keyframes fadeIn {
+    from {
+        transform: translateY(-50%);
+        opacity: 0;
+    }
+
+    to {
+        transform: none;
+        opacity: 1;
+    }
+
+}
+
+@-webkit-keyframes fadeIn {
+    from {
+        transform: translateY(-50%);
+        opacity: 0;
+    }
+
+    to {
+        transform: none;
+        opacity: 1;
+    }
+
+}
+
+.home-page {
+
+
+
+    .wrapper,
+    .logo {
+        animation: fadeIn 1000ms ease;
+        -webkit-animation: fadeIn 1000ms ease;
+        animation-delay: 1000ms;
+        animation-fill-mode: both;
+    }
+
+    .logo {
+        animation-delay: 0ms;
+    }
+
+    .dot {
+        color: #1EBDB0;
+    }
+}
