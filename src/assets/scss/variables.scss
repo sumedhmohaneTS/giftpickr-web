@@ -15,8 +15,7 @@
 // NOTE Utilities -------------------------------------------------------------------------------
 
 $utilities: (
-  "cursor": (
-    property: cursor,
+  "cursor": (property: cursor,
     class: cursor,
     responsive: false,
     values: pointer,
@@ -25,8 +24,10 @@ $utilities: (
 
 // NOTE Color system ----------------------------------------------------------------------------
 
-// $primary: #375F9B;
-$secondary: #8492A6;
+$primary: #1EBDB0;
+$secondary: #191414;
+$secondary-inverse: #e6ebeb;
+
 $text-muted: #ACA7AA;
 $info: #375F9B; // #3C78DA;
 $danger: #D0021B;

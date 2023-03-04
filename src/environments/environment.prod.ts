@@ -14,7 +14,7 @@ const baseUrl = scheme + host + port + path;
 export const environment = {
   production: true,
   version: packageInfo.version,
-  appName: 'giftpickr',
+  appName: 'GiftPickr',
   envName: EnvName.PROD,
   defaultLanguage: 'en',
   apiBaseUrl: baseUrl,

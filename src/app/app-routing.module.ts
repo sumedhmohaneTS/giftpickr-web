@@ -5,10 +5,20 @@ import { RouterModule } from '@angular/router';
 
 // Components
 const routes: Routes = [
+  { path: "", redirectTo: "/home", pathMatch: "full" },
+  {
+    path: 'V2',
+    loadChildren: () => import('./pages/homeV2/homeV2.module').then(m => m.HomeV2Module),
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule),
+  },
   {
     path: '**',
-    loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule),
+    loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundModule),
   }
+
 ];
 
 @NgModule({

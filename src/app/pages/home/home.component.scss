@@ -1,32 +1,7 @@
-@keyframes fadeIn {
-    from {
-        transform: translateY(-50%);
-        opacity: 0;
-    }
-
-    to {
-        transform: none;
-        opacity: 1;
-    }
-
-}
-
-@-webkit-keyframes fadeIn {
-    from {
-        transform: translateY(-50%);
-        opacity: 0;
-    }
-
-    to {
-        transform: none;
-        opacity: 1;
-    }
-
-}
+@import '../../../assets/scss/variables.scss';
+@import '../../../assets/scss/animation.scss';
 
 .home-page {
-
-
 
     .wrapper,
     .logo {
@@ -41,6 +16,6 @@
     }
 
     .dot {
-        color: #1EBDB0;
+        color: $primary;
     }
 }

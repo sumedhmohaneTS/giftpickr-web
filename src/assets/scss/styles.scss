@@ -1,4 +1,28 @@
 @import 'variables.scss';
+@import 'generic.scss';
+@import 'material-icons/iconfont/material-icons.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    font-family: "Open Sans", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    color: #ddd;
+    min-height: 100vh;
+}
+
+.bg-black-gradient {
+    background: linear-gradient(180deg, #191414 0, #222 100%);
+}
+
+.white-text {
+    color: $secondary-inverse;
+    transition: 0.2s ease-in-out all;
+
+    &:hover {
+        color: white;
+    }
+}
