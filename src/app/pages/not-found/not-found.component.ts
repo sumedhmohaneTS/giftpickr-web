@@ -1,6 +1,7 @@
 // Angular modules
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
+import { SeoService } from 'src/app/shared/seo/seo.service';
 
 @Component({
   selector: 'app-not-found',
@@ -9,11 +10,13 @@ import { OnInit } from '@angular/core';
 })
 export class NotFoundComponent implements OnInit {
 
-  constructor() { }
+  constructor(private seoService: SeoService) { }
 
 
   public ngOnInit(): void {
-
+    this.seoService.update({
+      title: 'Page Not Found | GiftPickr'
+    });
   }
 
 }

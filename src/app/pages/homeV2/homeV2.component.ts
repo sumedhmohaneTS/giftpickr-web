@@ -15,8 +15,7 @@ export class HomeV2Component implements OnInit {
   fileNo: any = 1;
   interval: any;
 
-  constructor(private seoService: SeoService,
-    private locationStrategy: LocationStrategy) { }
+  constructor(private seoService: SeoService) { }
 
 
   public ngOnInit(): void {
