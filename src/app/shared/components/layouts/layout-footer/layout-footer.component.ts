@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from '@env/environment';
 
 @Component({
   selector: 'app-layout-footer',
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./layout-footer.component.scss']
 })
 export class LayoutFooterComponent implements OnInit {
+  public appName: string = environment.appName;
 
   constructor
     (
@@ -21,11 +23,6 @@ export class LayoutFooterComponent implements OnInit {
 
   }
 
-
-  public async onClickLogout(): Promise<void> {
-    // NOTE Redirect to login
-    this.router.navigate(['/auth/login']);
-  }
 
 
 }
