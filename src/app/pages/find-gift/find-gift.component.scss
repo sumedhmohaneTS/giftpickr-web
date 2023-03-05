@@ -1,0 +1,21 @@
+@import '../../../assets/scss/variables.scss';
+@import '../../../assets/scss/animation.scss';
+
+.home-page {
+
+    .wrapper,
+    .logo {
+        animation: fadeIn 1000ms ease;
+        -webkit-animation: fadeIn 1000ms ease;
+        animation-delay: 1000ms;
+        animation-fill-mode: both;
+    }
+
+    .logo {
+        animation-delay: 0ms;
+    }
+
+    .dot {
+        color: $primary;
+    }
+}

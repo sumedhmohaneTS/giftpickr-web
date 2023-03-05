@@ -6,13 +6,13 @@
   <div class="content relative py-1 w-full flex items-center justify-center overflow-hidden ">
     <div class="left-arrow hidden md:flex items-center justify-center absolute left-0 z-30 fadeIn cursor-pointer"
       *ngIf="isScrollable && !isAtStart" (click)="scrollLeft()">
-      <span class="material-icons pulse text-secondary mx-1 mb-1 text-4xl text-secondary">
+      <span class="material-icons pulse text-secondary mx-1 mb-1 text-4xl text-secondary-inverse  relative z-50 mt-1">
         chevron_left
       </span>
     </div>
     <div class="right-arrow hidden md:flex items-center justify-center absolute right-0 z-30 fadeIn  cursor-pointer"
       *ngIf="isScrollable && !isAtEnd" (click)="scrollRight()">
-      <span class="material-icons pulse text-secondary mx-1 mb-1 text-4xl text-secondary">
+      <span class="material-icons pulse text-secondary mx-1 mb-1 text-4xl text-secondary-inverse relative z-50 mt-1">
         chevron_right
       </span>
     </div>
