@@ -1,13 +1,13 @@
 @import 'variables.scss';
 @import 'generic.scss';
-@import 'material-icons/iconfont/material-icons.css';
+@import 'material-icons/iconfont/filled.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-    font-family: 'Josefin Sans', "Open Sans", sans-serif;
+    font-family: "Josefin Sans", "Open Sans", sans-serif;
     font-style: normal;
     font-weight: 400;
     color: #ddd;
