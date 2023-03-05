@@ -28,6 +28,7 @@ import { ModalWrapperDirective } from './directives/modal-wrapper.directive';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { LayoutFooterComponent } from '@layouts/layout-footer/layout-footer.component';
+import { SeoModule } from './seo/seo.module';
 
 
 @NgModule({
@@ -38,7 +39,7 @@ import { LayoutFooterComponent } from '@layouts/layout-footer/layout-footer.comp
       RouterModule,
       FormsModule,
       ReactiveFormsModule,
-
+      SeoModule,
       // External modules
       NgbModule,
       AngularSvgIconModule.forRoot()
@@ -72,7 +73,7 @@ import { LayoutFooterComponent } from '@layouts/layout-footer/layout-footer.comp
       RouterModule,
       FormsModule,
       ReactiveFormsModule,
-
+      SeoModule,
       // External modules
       NgbModule,
 

@@ -1,6 +1,8 @@
 // Angular modules
+import { LocationStrategy } from '@angular/common';
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
+import { SeoService } from 'src/app/shared/seo/seo.service';
 import { HomeV2Service } from './homeV2.service';
 
 @Component({
@@ -13,11 +15,19 @@ export class HomeV2Component implements OnInit {
   fileNo: any = 1;
   interval: any;
 
-  constructor() { }
+  constructor(private seoService: SeoService,
+    private locationStrategy: LocationStrategy) { }
 
 
   public ngOnInit(): void {
     this.calculateFileNo();
+
+    this.seoService.update({
+      title: 'GiftPickr - Your Personal Gift Recommendation Engine',
+      description: 'Find the perfect gift for any occasion with GiftPickr.com. Our gift recommendation system makes gift-giving easy and stress-free. Start browsing today!',
+      url: window.location.href,
+      imageUrl: 'https://giftpickr-web.s3.ap-south-1.amazonaws.com/assets/GiftPickr-with-name.png'
+    });
   }
 
   calculateFileNo() {

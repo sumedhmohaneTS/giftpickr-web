@@ -1,0 +1,40 @@
+.card-list {
+    .card-container {
+        &.last {
+            background-color: red;
+        }
+    }
+}
+
+.left-arrow,
+.right-arrow {
+    width: 50px;
+    height: 100%;
+
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 50px;
+        /* Adjust as per your requirement */
+        background: linear-gradient(to left, rgba(255, 255, 255, 0), #191414);
+        pointer-events: none;
+        /* This is important to enable clicking on the arrow button */
+    }
+
+}
+
+.left-arrow {
+    &::before {
+        background: linear-gradient(to left, rgba(255, 255, 255, 0), #191414);
+    }
+}
+
+.right-arrow {
+    &::before {
+        background: linear-gradient(to right, rgba(255, 255, 255, 0), #191414);
+    }
+}
