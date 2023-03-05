@@ -1,13 +1,13 @@
 <!-- NOTE Navbar -->
-<nav class="navbar bg-dark text-white py-4">
+<nav class="navbar px-6 md:px-20 w-full bg-dark text-white py-4">
   <div class="flex items-center justify-between">
     <div class="left-section">
       <a class="navbar-brand flex items-center justify-center" [routerLink]="['/']">
-        <div class="flex items-center justify-center w-8 h-8 md:w-12 md:h-12">
+        <div class="flex items-center justify-center w-8 h-8 md:w-10 md:h-10">
           <img src="https://giftpickr-web.s3.ap-south-1.amazonaws.com/assets/GiftPickr-logo.png"
             [alt]="appName + ' Logo'" class="img-fluid me-2 w-auto h-auto" />
         </div>
-        <div class="title h-12 text-lg md:text-2xl px-4  flex items-center justify-center">
+        <div class="title text-lg md:text-2xl px-4 mt-2 flex items-center justify-center">
           <span class="text-white font-special flex items-center justify-center ">{{ appName }}</span>
         </div>
       </a>
@@ -15,11 +15,8 @@
 
     <div class="right-section">
       <div class="form-link flex items-center justify-center cursor-pointer">
-        <div class="flex-1 icon px-2"><span class="material-icons mt-2">
-            list
-          </span></div>
         <div class="flex-1 flex items-center justify-center whitespace-nowrap cursor-pointer pr-2"><span
-            class="white-text">Lets Pick a
+            class="white-text">Lets pick a
             gift!</span></div>
       </div>
     </div>

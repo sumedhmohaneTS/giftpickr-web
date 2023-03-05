@@ -20,7 +20,6 @@ import { ModalWrapperComponent } from './components/modals/modal-wrapper/modal-w
 
 // Layouts
 import { LayoutHeaderComponent } from './components/layouts/layout-header/layout-header.component';
-import { PageLayoutComponent } from './components/layouts/page-layout/page-layout.component';
 
 // Pipes
 
@@ -28,6 +27,7 @@ import { PageLayoutComponent } from './components/layouts/page-layout/page-layou
 import { ModalWrapperDirective } from './directives/modal-wrapper.directive';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ProductCardComponent } from './components/product-card/product-card.component';
+import { LayoutFooterComponent } from '@layouts/layout-footer/layout-footer.component';
 
 
 @NgModule({
@@ -58,7 +58,7 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 
       // Layouts
       LayoutHeaderComponent,
-      PageLayoutComponent,
+      LayoutFooterComponent,
 
       // Pipes
 
@@ -89,8 +89,7 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 
       // Layouts
       LayoutHeaderComponent,
-      PageLayoutComponent,
-
+      LayoutFooterComponent,
       // Pipes
 
       // Directives

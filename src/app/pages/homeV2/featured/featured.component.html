@@ -1,8 +1,17 @@
-<div class="featured-section py-4">
-  <div class="left-arrow"></div>
-  <div class="right-arrow"></div>
+<div class="featured-section py-4 flex flex-col items-center justify-center">
+  <h1 class="text-secondary-inverse font-special text-2xl font-semibold mb-4">Check out our favorite gifts for any
+    occasion
+  </h1>
+  <div class="content py-2">
+    <div class="left-arrow"></div>
+    <div class="right-arrow"></div>
 
-  <div class="card-list">
-    <app-product-card [productData]="'test'"></app-product-card>
+    <div class="card-list flex items-start justify-between">
+      <div class="card-container mr-4" *ngFor="let product of featuredProducts">
+        <app-product-card [productData]="product"></app-product-card>
+      </div>
+
+    </div>
   </div>
+
 </div>

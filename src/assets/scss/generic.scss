@@ -16,6 +16,24 @@
     color: $primary;
 }
 
+.text-secondary {
+    color: $secondary;
+}
+
 .text-secondary-inverse {
     color: $secondary-inverse;
+}
+
+
+.bg-black-gradient {
+    background: linear-gradient(180deg, #191414 0, #222 100%);
+}
+
+.white-text {
+    color: $secondary-inverse;
+    transition: 0.2s ease-in-out all;
+
+    &:hover {
+        color: white;
+    }
 }

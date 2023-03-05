@@ -1,6 +1,7 @@
 // Angular modules
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
+import { HomeV2Service } from './homeV2.service';
 
 @Component({
   selector: 'app-homeV2',

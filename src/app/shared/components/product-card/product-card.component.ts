@@ -16,7 +16,11 @@ export class ProductCardComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    this.process();
 
   }
 
+  process() {
+    this.productData.imageUrls = this.productData.image_url && this.productData.image_url.split('||') || [];
+  }
 }

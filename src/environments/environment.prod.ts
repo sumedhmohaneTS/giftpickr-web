@@ -4,9 +4,9 @@ import { EnvName } from '@enums/environment.enum';
 // Packages
 import packageInfo from '../../package.json';
 
-const scheme = 'http://';
-const host = 'localhost';
-const port = ':5000';
+const scheme = 'https://';
+const host = 'giftpickr.com';
+const port = '';
 const path = '/api/';
 
 const baseUrl = scheme + host + port + path;

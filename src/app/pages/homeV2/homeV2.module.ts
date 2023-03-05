@@ -9,6 +9,7 @@ import { HomeV2RoutingModule } from './homeV2-routing.module';
 
 // Components
 import { HomeV2Component } from './homeV2.component';
+import { HomeV2Service } from './homeV2.service';
 
 @NgModule({
   imports:
@@ -22,5 +23,9 @@ import { HomeV2Component } from './homeV2.component';
       HomeV2Component,
       FeaturedComponent,
     ],
+  providers:
+    [
+      HomeV2Service
+    ]
 })
 export class HomeV2Module { }
