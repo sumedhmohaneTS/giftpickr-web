@@ -5,9 +5,9 @@ import { RouterModule } from '@angular/router';
 
 // Components
 const routes: Routes = [
-  { path: "", redirectTo: "/home", pathMatch: "full" },
+  // { path: "", redirectTo: "/home", pathMatch: "full" },
   {
-    path: 'V2',
+    path: '',
     loadChildren: () => import('./pages/homeV2/homeV2.module').then(m => m.HomeV2Module),
   },
   {
