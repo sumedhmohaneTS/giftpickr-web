@@ -34,6 +34,7 @@ import { GiftFormComponent } from './components/gift-form/gift-form.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatRippleModule } from '@angular/material/core';
+import { GiftFormService } from './components/gift-form/gift-form.service';
 
 @NgModule({
   imports:
@@ -105,6 +106,7 @@ import { MatRippleModule } from '@angular/material/core';
     ],
   providers:
     [
+      GiftFormService,
     ]
 })
 export class SharedModule { }

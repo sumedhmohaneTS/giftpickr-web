@@ -1,9 +1,9 @@
 <div class="gift-form w-full h-full">
     <div class="header mb-8">
-        <h2 class="text-3xl md:text-4xl font-secondary-inverse">{{header}}</h2>
+        <h2 class="text-3xl md:text-4xl font-secondary-inverse capitalize">{{header}}</h2>
     </div>
     <div class="body">
-        <div class="loader flex flex-col items-center justify-center" *ngIf="loadingProducts">
+        <div class="loader flex flex-col items-center justify-center fadeIn" *ngIf="loadingProducts">
             <div class="icon">
                 <span class="animate-spin material-icons pulse text-secondary-inverse mx-1">
                     refresh
@@ -12,7 +12,7 @@
 
             <h3 class="text-secondary-inverse text-xl font-semibold">Picking the perfect gift...</h3>
         </div>
-        <div class="questions flex flex-col" *ngIf="!loadingProducts">
+        <div class="questions flex flex-col fadeIn" *ngIf="!loadingProducts && !products">
             <div class="flex py-4 mb-4 items-center justify-between flex-wrap">
                 <div class="age">
                     <div class="py-2">
@@ -90,10 +90,21 @@
                 </div>
             </div>
         </div>
+
+        <div class="products-section flex flex-wrap w-full overflow-hidden fadeIn justify-center"
+            *ngIf="!loadingProducts && products">
+            <div class="card-container mr-6 md:mr-8 mb-8" *ngFor="let product of products;let last = last">
+                <app-product-card [productData]="product"></app-product-card>
+            </div>
+
+        </div>
     </div>
-    <div class="footer py-4 items-center" *ngIf="!loadingProducts">
-        <button class="bg-primary py-2 px-6 rounded" (click)="submit()" matRipple>
+    <div class="footer flex py-4 items-center fadeIn" [class.justify-center]="products">
+        <button class="bg-primary py-2 px-6 rounded" (click)="submit()" matRipple *ngIf="!loadingProducts && !products">
             <span class="text-secondary-inverse">Submit</span>
+        </button>
+        <button class="bg-primary py-2 px-6 rounded" (click)="reset()" matRipple *ngIf="!loadingProducts && products">
+            <span class="text-secondary-inverse">Search Again</span>
         </button>
     </div>
 

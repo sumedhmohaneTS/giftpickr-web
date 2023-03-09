@@ -1,6 +1,8 @@
 // Angular modules
 import { Component, Input, ViewChild } from '@angular/core';
 import { OnInit } from '@angular/core';
+import { SeoService } from '../../seo/seo.service';
+import { GiftFormService } from './gift-form.service';
 
 @Component({
   selector: 'app-gift-form',
@@ -12,9 +14,9 @@ export class GiftFormComponent implements OnInit {
   header = 'Lets pick the perfect gift!';
   age = 18;
   gender = 'any';
-  occasion = 'any'
-  relationship = 'any';
-  interest = 'any';
+  occasion: any = 'any'
+  relationship: any = 'any';
+  interest: any = 'any';
 
   genders = ['Male', 'Female', 'Prefer not to say'];
   occasions = 'christmas,holi,birthday,wedding,anniversary,graduation,valentine,mothersday,fathersday,rakhi,diwali'.split(',').sort();
@@ -22,15 +24,21 @@ export class GiftFormComponent implements OnInit {
   interests = 'sports,technology,travel,books,food,gaming,fashion,home,art,music,wellness,automotive'.split(',').sort();
 
   loadingProducts = false;
-  products = [];
+  products: any;
   @ViewChild('slider') slider: any;
 
-  constructor() {
+  constructor(private service: GiftFormService,
+    private seoService: SeoService) {
 
   }
 
   public ngOnInit(): void {
-
+    this.seoService.update({
+      title: 'GiftPickr - Lets pick the perfect gift!',
+      description: 'Find the perfect gift for any occasion with GiftPickr.com. Our gift recommendation system makes gift-giving easy and stress-free. Start browsing today!',
+      url: window.location.href,
+      imageUrl: 'https://giftpickr-web.s3.ap-south-1.amazonaws.com/assets/GiftPickr-with-name.png'
+    });
   }
 
   change() {
@@ -40,12 +48,48 @@ export class GiftFormComponent implements OnInit {
     }
   }
 
-  submit() {
-    console.log(this.age, this.gender, this.relationship, this.occasion, this.interest);
-    this.loadingProducts = true;
-    setTimeout(() => {
-      this.loadingProducts = false;
-    }, 50000);
+  reset() {
+    this.products = undefined;
+  }
+
+  async submit() {
+
+    try {
+      this.loadingProducts = true;
+      if (this.gender == "Prefer not to say") {
+        this.gender = "any";
+      }
+      const data = {
+        age: this.age,
+        gender: this.gender.toLowerCase(),
+        relationship: this.getRelation(),
+        occasion: this.getOccassion(),
+        interests:
+          this.interest && this.interest.join && this.interest.join(',').toLowerCase() || 'any'
+      };
+      const result = await this.service.getRecommendedProducts(data);
+      console.log(result);
+      this.products = result.data.data;
+
+      this.setHeader();
+    } catch (error) {
+      console.error(error);
+    }
+    this.loadingProducts = false;
+  }
+
+  setHeader() {
+    this.header = '';
+    this.header += this.getOccassion() != 'any' ? this.getOccassion() + ' gifts for ' : '';
+    this.header += this.getRelation() != 'any' ? this.getRelation() + '' : '';
+    this.header = (this.header.length > 0 && this.header) || 'Top Recommendations';
+  }
+
+  getRelation() {
+    return this.relationship && this.relationship.join && this.relationship.join(',').toLowerCase() || this.relationship;
+  }
+  getOccassion() {
+    return this.occasion && this.occasion.join && this.occasion.join(',').toLowerCase() || this.occasion;
   }
 
 }

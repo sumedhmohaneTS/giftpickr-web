@@ -11,7 +11,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/homeV2/homeV2.module').then(m => m.HomeV2Module),
   },
   {
-    path: 'find-gift',
+    path: 'recommend',
     loadChildren: () => import('./pages/find-gift/find-gift.module').then(m => m.FindGiftModule),
   },
   {
