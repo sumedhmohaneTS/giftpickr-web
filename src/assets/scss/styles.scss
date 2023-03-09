@@ -38,7 +38,7 @@ $giftpickr-theme: mat.define-light-theme((color: (primary: $giftpickr-primary,
 @tailwind utilities;
 
 body {
-    font-family: "Josefin Sans", "Open Sans", sans-serif;
+    font-family: "Josefin Sans", "Open Sans", sans-serif !important;
     font-style: normal;
     font-weight: 400;
     color: #ddd;
