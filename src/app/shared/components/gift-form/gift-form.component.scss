@@ -1,0 +1,22 @@
+@import '../../../../assets/scss/variables.scss';
+
+.chip {
+    background-color: #444 !important;
+    border: 0;
+
+    ::ng-deep {
+        button {
+            &::before {
+                border: 0;
+            }
+        }
+    }
+}
+
+.selected {
+    background-color: $primary;
+}
+
+.age-slider {
+    min-width: 250px;
+}

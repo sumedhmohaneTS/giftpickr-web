@@ -10,6 +10,7 @@ import { HomeV2Service } from '../homeV2.service';
 })
 export class FeaturedComponent implements OnInit, OnDestroy {
 
+  dataLoaded = false;
   featuredProducts: any;
   isScrollable: boolean = false;
   @ViewChild('cardList', { static: false }) cardListRef!: ElementRef;
@@ -27,15 +28,22 @@ export class FeaturedComponent implements OnInit, OnDestroy {
   }
 
   ngAfterViewInit() {
+
+    this.checkScrollable();
+    const cardList = this.cardListRef.nativeElement;
+    cardList.addEventListener('scroll', () => {
+      this.checkIfAtStartOrEnd();
+    });
+  }
+
+  private checkScrollable() {
     const cardList = this.cardListRef.nativeElement;
     const cardContainer = cardList.parentElement;
 
     const containerWidth = cardContainer.offsetWidth;
     const contentWidth = cardList.scrollWidth;
-    this.isScrollable = contentWidth >= containerWidth;
-    cardList.addEventListener('scroll', () => {
-      this.checkIfAtStartOrEnd();
-    });
+    this.isScrollable = this.dataLoaded && contentWidth > containerWidth;
+
   }
 
   ngOnDestroy(): void {
@@ -48,7 +56,11 @@ export class FeaturedComponent implements OnInit, OnDestroy {
   async getFeaturedProducts() {
     const response = await this.service.getFeaturedProducts();
     this.featuredProducts = response && response.data && response.data.data || [];
+    // this.featuredProducts = response.data.data.slice(0, 3);
     console.log(this.featuredProducts);
+    this.dataLoaded = true;
+    setTimeout(() => this.checkScrollable(), 0);
+    this.checkScrollable();
   }
 
   scrollLeft(): void {
@@ -60,7 +72,7 @@ export class FeaturedComponent implements OnInit, OnDestroy {
 
     setTimeout(() => {
       this.checkIfAtStartOrEnd();
-    }, 500);
+    }, 0);
 
   }
 

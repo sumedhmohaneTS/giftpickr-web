@@ -1,0 +1,100 @@
+<div class="gift-form w-full h-full">
+    <div class="header mb-8">
+        <h2 class="text-3xl md:text-4xl font-secondary-inverse">{{header}}</h2>
+    </div>
+    <div class="body">
+        <div class="loader flex flex-col items-center justify-center" *ngIf="loadingProducts">
+            <div class="icon">
+                <span class="animate-spin material-icons pulse text-secondary-inverse mx-1">
+                    refresh
+                </span>
+            </div>
+
+            <h3 class="text-secondary-inverse text-xl font-semibold">Picking the perfect gift...</h3>
+        </div>
+        <div class="questions flex flex-col" *ngIf="!loadingProducts">
+            <div class="flex py-4 mb-4 items-center justify-between flex-wrap">
+                <div class="age">
+                    <div class="py-2">
+                        <h3 class="text-secondary-inverse">Whats the age of your loved one?</h3>
+                    </div>
+                    <div class="flex items-center">
+
+                        <div class="text-secondary-inverse text-xl font-semibold mr-8">Age: {{age}}</div>
+                        <mat-slider class="w-full age-slider" min="1" max="100" step="1" #slider (change)="change()"
+                            discrete>
+                            <input [(ngModel)]="age" matSliderThumb>
+                        </mat-slider>
+                    </div>
+
+                </div>
+            </div>
+            <div class="flex py-4 mb-4 items-center">
+                <div class="gender mr-2">
+                    <div class="py-2">
+                        <h3 class="text-secondary-inverse">Whats the gender of your loved one?</h3>
+                    </div>
+                    <mat-chip-listbox class="options flex" aria-label="Gender selection" [(ngModel)]="gender">
+                        <mat-chip-option [ngClass]="gender == obj ? 'selected' :'chip'" *ngFor="let obj of genders">
+                            <span class="text-sm text-secondary-inverse tracking-wide capitalize">{{obj}}</span>
+                        </mat-chip-option>
+                    </mat-chip-listbox>
+                </div>
+            </div>
+            <div class="flex py-4 mb-4 items-center">
+                <div class="relationship">
+                    <div class="py-2">
+                        <h3 class="text-secondary-inverse">What is your relationship with the recipient?</h3>
+                    </div>
+                    <mat-chip-listbox class="options flex" aria-label="relationship selection"
+                        [(ngModel)]="relationship">
+                        <mat-chip-option [ngClass]="relationship == obj ? 'selected' :'chip'"
+                            *ngFor="let obj of relationships">
+                            <span class="text-sm text-secondary-inverse tracking-wide capitalize">{{obj}}</span>
+                        </mat-chip-option>
+
+                    </mat-chip-listbox>
+                    <!-- <div class="text-secondary-inverse text-xl font-semibold">relationships: {{relationship}}</div> -->
+                </div>
+            </div>
+            <div class="flex py-4 mb-4 items-center">
+                <div class="occassion">
+                    <div class="py-2">
+                        <h3 class="text-secondary-inverse">What is the occassion?</h3>
+                    </div>
+                    <mat-chip-listbox class="options flex" aria-label="Occasions selection" [(ngModel)]="occasion"
+                        selectable multiple>
+                        <mat-chip-option [ngClass]="occasion.indexOf(obj) == -1 ? 'chip' :'selected'"
+                            *ngFor="let obj of occasions">
+                            <span class="text-sm text-secondary-inverse tracking-wide capitalize">{{obj}}</span>
+                        </mat-chip-option>
+
+                    </mat-chip-listbox>
+                    <!-- <div class="text-secondary-inverse text-xl font-semibold">occasions: {{occasion}}</div> -->
+                </div>
+            </div>
+            <div class="flex py-4 mb-4 items-center">
+                <div class="interest">
+                    <div class="py-2">
+                        <h3 class="text-secondary-inverse">What are the recipient's interests?</h3>
+                    </div>
+                    <mat-chip-listbox class="options flex" aria-label="interests selection" [(ngModel)]="interest"
+                        selectable multiple>
+                        <mat-chip-option [ngClass]="interest.indexOf(obj) == -1 ? 'chip' :'selected'"
+                            *ngFor="let obj of interests">
+                            <span class="text-sm text-secondary-inverse tracking-wide capitalize">{{obj}}</span>
+                        </mat-chip-option>
+
+                    </mat-chip-listbox>
+                    <!-- <div class="text-secondary-inverse text-xl font-semibold">interests: {{interest}}</div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer py-4 items-center" *ngIf="!loadingProducts">
+        <button class="bg-primary py-2 px-6 rounded" (click)="submit()" matRipple>
+            <span class="text-secondary-inverse">Submit</span>
+        </button>
+    </div>
+
+</div>

@@ -5,24 +5,23 @@
   </h1>
   <div class="content relative py-1 w-full flex items-center justify-center overflow-hidden ">
     <div class="left-arrow hidden md:flex items-center justify-center absolute left-0 z-30 fadeIn cursor-pointer"
-      *ngIf="isScrollable && !isAtStart" (click)="scrollLeft()">
+      *ngIf="isScrollable" [class.opacity-0]="isAtStart" (click)="scrollLeft()">
       <span class="material-icons pulse text-secondary mx-1 mb-1 text-4xl text-secondary-inverse  relative z-50 mt-1">
         chevron_left
       </span>
     </div>
     <div class="right-arrow hidden md:flex items-center justify-center absolute right-0 z-30 fadeIn  cursor-pointer"
-      *ngIf="isScrollable && !isAtEnd" (click)="scrollRight()">
+      *ngIf="isScrollable" [class.opacity-0]="isAtEnd" (click)="scrollRight()">
       <span class="material-icons pulse text-secondary mx-1 mb-1 text-4xl text-secondary-inverse relative z-50 mt-1">
         chevron_right
       </span>
     </div>
 
 
-
-    <div class="card-list flex items-start justify-start  w-full overflow-x-auto hide-scroll"
-      [class.md:justify-center]="!isScrollable" #cardList>
-      <div class="card-container" *ngFor="let product of featuredProducts;let last = last" [class.md:mr-10]="!last"
-        [class.mr-6]="!isScrollable && !last">
+    <div class="card-list flex items-start   w-full overflow-x-auto hide-scroll"
+      [ngClass]="isScrollable ? 'justify-start' : 'justify-center'" #cardList>
+      <div class="card-container" *ngFor="let product of featuredProducts;let last = last"
+        [ngClass]="isScrollable ? (last ? 'mr-0' : 'mr-6 md:mr-10') : ('mr-6 md:mr-10')">
         <app-product-card [productData]="product"></app-product-card>
       </div>
 

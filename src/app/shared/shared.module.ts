@@ -29,7 +29,11 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { LayoutFooterComponent } from '@layouts/layout-footer/layout-footer.component';
 import { SeoModule } from './seo/seo.module';
+import { GiftFormComponent } from './components/gift-form/gift-form.component';
 
+import { MatSliderModule } from '@angular/material/slider';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatRippleModule } from '@angular/material/core';
 
 @NgModule({
   imports:
@@ -42,7 +46,10 @@ import { SeoModule } from './seo/seo.module';
       SeoModule,
       // External modules
       NgbModule,
-      AngularSvgIconModule.forRoot()
+      AngularSvgIconModule.forRoot(),
+      MatSliderModule,
+      MatChipsModule,
+      MatRippleModule,
     ],
   declarations:
     [
@@ -50,7 +57,7 @@ import { SeoModule } from './seo/seo.module';
       ToastComponent,
       ProgressBarComponent,
       ProductCardComponent,
-
+      GiftFormComponent,
       // Forms
       FormConfirmComponent,
 
@@ -81,7 +88,7 @@ import { SeoModule } from './seo/seo.module';
       ToastComponent,
       ProgressBarComponent,
       ProductCardComponent,
-
+      GiftFormComponent,
       // Forms
       FormConfirmComponent,
 
