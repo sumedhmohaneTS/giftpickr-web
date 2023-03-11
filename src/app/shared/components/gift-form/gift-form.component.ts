@@ -19,9 +19,9 @@ export class GiftFormComponent implements OnInit {
   interest: any = 'any';
 
   genders = ['Male', 'Female', 'Prefer not to say'];
-  occasions = 'christmas,holi,birthday,wedding,anniversary,graduation,valentine,mothersday,fathersday,rakhi,diwali'.split(',').sort();
-  relationships = 'friend,father,mother,spouse,child,brother,sister,relative'.split(',').sort();
-  interests = 'sports,technology,travel,books,food,gaming,fashion,home,art,music,wellness,automotive'.split(',').sort();
+  occasions = 'christmas,birthday,wedding,anniversary,graduation,valentine,mothers day,fathers day,rakhi,diwali'.split(',').sort();
+  relationships = 'friend,father,mother,husband,wife,child,brother,sister,boyfriend,girlfriend'.split(',').sort();
+  interests = 'sports,technology,travel,books,food,gaming,fashion,home,art,music,wellness,automobile'.split(',').sort();
 
   loadingProducts = false;
   products: any;
