@@ -22,7 +22,7 @@ export class HomeV2Component implements OnInit {
     this.calculateFileNo();
 
     this.seoService.update({
-      title: 'GiftPickr - Your Personal Gift Recommendation Engine',
+      title: 'GiftPickr - Lets pick a gift for your loved ones',
       description: 'Find the perfect gift for any occasion with GiftPickr.com. Our gift recommendation system makes gift-giving easy and stress-free. Start browsing today!',
       url: window.location.href,
       imageUrl: 'https://giftpickr-web.s3.ap-south-1.amazonaws.com/assets/GiftPickr-with-name.png'
