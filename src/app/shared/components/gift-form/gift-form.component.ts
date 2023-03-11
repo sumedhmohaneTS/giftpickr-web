@@ -50,6 +50,7 @@ export class GiftFormComponent implements OnInit {
 
   reset() {
     this.products = undefined;
+    this.header = 'Lets pick the perfect gift!';
   }
 
   async submit() {
