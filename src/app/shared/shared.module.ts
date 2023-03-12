@@ -37,6 +37,7 @@ import { MatRippleModule } from '@angular/material/core';
 import { GiftFormService } from './components/gift-form/gift-form.service';
 import { NgxTextOverflowClampModule } from 'ngx-text-overflow-clamp';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   imports:
@@ -55,6 +56,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
       MatRippleModule,
       NgxTextOverflowClampModule,
       MatTooltipModule,
+      MatInputModule,
     ],
   declarations:
     [

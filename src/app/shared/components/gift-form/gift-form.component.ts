@@ -12,15 +12,16 @@ import { GiftFormService } from './gift-form.service';
 export class GiftFormComponent implements OnInit {
 
   header = 'Lets pick the perfect gift!';
-  age = 18;
-  priceList = [
-    { min: 0, max: 1000, label: 'Under 1000' },
-    { min: 1001, max: 5000, label: '₹1000 - ₹5000' },
-    { min: 5000, max: 10000, label: '₹5000 - ₹10000' },
-    { min: 10000, max: 20000, label: '₹10000 - ₹20000' },
-    { min: 20000, max: 200000, label: 'Over ₹20000' },
-  ]
-  price = { min: 0, max: 200000 };
+  age: any = 18;
+  priceList: any = [
+    { id: 2, min: 0, max: 1000, label: 'Under 1000' },
+    { id: 3, min: 1000, max: 5000, label: '₹1000 - ₹5000' },
+    { id: 4, min: 5000, max: 10000, label: '₹5000 - ₹10000' },
+    { id: 5, min: 10000, max: 20000, label: '₹10000 - ₹20000' },
+    { id: 6, min: 20000, max: 200000, label: 'Over ₹20000' },
+  ];
+  ogPriceObj: any = { id: 1, min: undefined, max: undefined };
+  price: any = this.ogPriceObj;
   gender = 'any';
   occasion: any = 'any'
   relationship: any = 'any';
@@ -59,6 +60,7 @@ export class GiftFormComponent implements OnInit {
 
   reset() {
     this.products = undefined;
+    this.otherProducts = undefined;
     this.header = 'Lets pick the perfect gift!';
   }
 

@@ -29,20 +29,34 @@
 
                 </div>
             </div>
-            <div class="flex py-4 mb-4 items-center justify-between flex-wrap">
+            <div class="flex py-2 mb-4 items-center justify-between flex-wrap">
                 <div class="age">
                     <div class="py-2">
-                        <h3 class="text-secondary-inverse">What is your max budget?</h3>
+                        <h3 class="text-secondary-inverse">What is your budget?</h3>
                     </div>
                     <div class="flex items-center">
 
                         <mat-chip-listbox class="options flex" aria-label="Price selection" [(ngModel)]="price">
-                            <mat-chip-option [ngClass]="price == obj ? 'selected' :'chip'"
+                            <mat-chip-option [ngClass]="price.id == obj.id ? 'selected' :'chip'" [value]="obj"
                                 *ngFor="let obj of priceList">
                                 <span
                                     class="text-sm text-secondary-inverse tracking-wide capitalize">{{obj.label}}</span>
                             </mat-chip-option>
                         </mat-chip-listbox>
+                    </div>
+                    <div class="custom pt-4">
+                        <mat-form-field>
+                            <mat-label>Min Price</mat-label>
+                            <span matPrefix>₹ &nbsp;</span>
+                            <input [max]="price.max" type="number" class="bg-dark text-secondary-inverse" matInput
+                                [(ngModel)]="price.min" (click)="price = ogPriceObj" label="Min Price">
+                        </mat-form-field>
+                        to
+                        <mat-form-field>
+                            <mat-label>Max Price</mat-label>
+                            <span matPrefix>₹ &nbsp;</span>
+                            <input [min]="price.min" type="number" class="bg-dark text-secondary-inverse" matInput
+                                [(ngModel)]="price.max" (click)="price = ogPriceObj" label="Max Price"></mat-form-field>
                     </div>
 
                 </div>
