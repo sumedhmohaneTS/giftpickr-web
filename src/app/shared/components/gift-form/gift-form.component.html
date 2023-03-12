@@ -1,5 +1,5 @@
 <div class="gift-form w-full h-full">
-    <div class="header mb-8">
+    <div class="header mb-8 flex items-center" [class.justify-center]="products">
         <h2 class="text-3xl md:text-4xl font-secondary-inverse capitalize">{{header}}</h2>
     </div>
     <div class="body">
@@ -25,6 +25,24 @@
                             discrete>
                             <input [(ngModel)]="age" matSliderThumb>
                         </mat-slider>
+                    </div>
+
+                </div>
+            </div>
+            <div class="flex py-4 mb-4 items-center justify-between flex-wrap">
+                <div class="age">
+                    <div class="py-2">
+                        <h3 class="text-secondary-inverse">What is your max budget?</h3>
+                    </div>
+                    <div class="flex items-center">
+
+                        <mat-chip-listbox class="options flex" aria-label="Price selection" [(ngModel)]="price">
+                            <mat-chip-option [ngClass]="price == obj ? 'selected' :'chip'"
+                                *ngFor="let obj of priceList">
+                                <span
+                                    class="text-sm text-secondary-inverse tracking-wide capitalize">{{obj.label}}</span>
+                            </mat-chip-option>
+                        </mat-chip-listbox>
                     </div>
 
                 </div>
@@ -98,6 +116,19 @@
             </div>
 
         </div>
+
+        <div class="other-section flex flex-col py-4 flex items-center justify-center"
+            *ngIf="!loadingProducts && otherProducts">
+            <h2 class="text-3xl md:text-4xl font-secondary-inverse capitalize">Other products you may like:</h2>
+            <div class="products-section flex flex-wrap w-full py-4 overflow-hidden fadeIn justify-center">
+
+                <div class="card-container mr-6 md:mr-8 mb-8" *ngFor="let product of otherProducts;let last = last">
+                    <app-product-card [productData]="product"></app-product-card>
+                </div>
+
+            </div>
+        </div>
+
     </div>
     <div class="footer flex py-4 items-center fadeIn" [class.justify-center]="products">
         <button class="bg-primary py-2 px-6 rounded" (click)="submit()" matRipple *ngIf="!loadingProducts && !products">

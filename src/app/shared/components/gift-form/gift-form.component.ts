@@ -13,6 +13,14 @@ export class GiftFormComponent implements OnInit {
 
   header = 'Lets pick the perfect gift!';
   age = 18;
+  priceList = [
+    { min: 0, max: 1000, label: 'Under 1000' },
+    { min: 1001, max: 5000, label: '₹1000 - ₹5000' },
+    { min: 5000, max: 10000, label: '₹5000 - ₹10000' },
+    { min: 10000, max: 20000, label: '₹10000 - ₹20000' },
+    { min: 20000, max: 200000, label: 'Over ₹20000' },
+  ]
+  price = { min: 0, max: 200000 };
   gender = 'any';
   occasion: any = 'any'
   relationship: any = 'any';
@@ -26,6 +34,7 @@ export class GiftFormComponent implements OnInit {
   loadingProducts = false;
   products: any;
   @ViewChild('slider') slider: any;
+  otherProducts: any;
 
   constructor(private service: GiftFormService,
     private seoService: SeoService) {
@@ -66,11 +75,14 @@ export class GiftFormComponent implements OnInit {
         relationship: this.getRelation(),
         occasion: this.getOccassion(),
         interests:
-          this.interest && this.interest.join && this.interest.join(',').toLowerCase() || 'any'
+          this.interest && this.interest.join && this.interest.join(',').toLowerCase() || 'any',
+        minPrice: this.price.min,
+        maxPrice: this.price.max,
       };
       const result = await this.service.getRecommendedProducts(data);
       console.log(result);
-      this.products = result.data.data;
+      this.products = result.data.data.mainProducts;
+      this.otherProducts = result.data.data.otherProducts;
 
       this.setHeader();
     } catch (error) {
@@ -81,7 +93,7 @@ export class GiftFormComponent implements OnInit {
 
   setHeader() {
     this.header = '';
-    this.header += this.getOccassion() != 'any' ? this.getOccassion() + ' gifts for ' : '';
+    this.header += this.getOccassion() != 'any' ? this.getOccassion() + ' gifts for ' : 'Gifts for ';
     this.header += this.getRelation() != 'any' ? this.getRelation() + '' : '';
     this.header = (this.header.length > 0 && this.header) || 'Top Recommendations';
   }

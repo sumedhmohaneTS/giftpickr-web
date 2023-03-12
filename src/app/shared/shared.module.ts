@@ -35,6 +35,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatRippleModule } from '@angular/material/core';
 import { GiftFormService } from './components/gift-form/gift-form.service';
+import { NgxTextOverflowClampModule } from 'ngx-text-overflow-clamp';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   imports:
@@ -51,6 +53,8 @@ import { GiftFormService } from './components/gift-form/gift-form.service';
       MatSliderModule,
       MatChipsModule,
       MatRippleModule,
+      NgxTextOverflowClampModule,
+      MatTooltipModule,
     ],
   declarations:
     [
