@@ -76,7 +76,7 @@ export class GiftFormComponent implements OnInit {
 
     try {
       this.loadingProducts = true;
-      if (this.gender == "Prefer not to say") {
+      if (!this.gender || this.gender == "Prefer not to say") {
         this.gender = "any";
       }
       const data = {
@@ -85,7 +85,7 @@ export class GiftFormComponent implements OnInit {
         relationship: this.getRelation(),
         occasion: this.getOccassion(),
         interests:
-          this.interest && this.interest.join && this.interest.join(',').toLowerCase() || 'any',
+          this.getInterest(),
         minPrice: this.price.min,
         maxPrice: this.price.max,
       };
@@ -114,10 +114,23 @@ export class GiftFormComponent implements OnInit {
   }
 
   getRelation() {
+    if (this.relationship.length == 0) {
+      this.relationship = 'any'
+    }
     return this.relationship && this.relationship.join && this.relationship.join(',').toLowerCase() || this.relationship;
   }
   getOccassion() {
+    if (this.occasion.length == 0) {
+      this.occasion = 'any'
+    }
     return this.occasion && this.occasion.join && this.occasion.join(',').toLowerCase() || this.occasion;
+  }
+
+  getInterest() {
+    if (this.interest.length == 0) {
+      this.interest = 'any'
+    }
+    return this.interest && this.interest.join && this.interest.join(',').toLowerCase() || 'any'
   }
 
   setPrice(obj: { id: any; min: any; max: any; }) {

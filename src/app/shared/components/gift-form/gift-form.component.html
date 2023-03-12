@@ -1,6 +1,6 @@
 <div class="gift-form w-full h-full">
-    <div class="header mb-8 flex items-center" [class.justify-center]="products || emptyScreen">
-        <h2 class="text-3xl md:text-4xl font-secondary-inverse capitalize">{{header}}</h2>
+    <div class="header mb-8 flex items-center" [class.md:justify-center]="products || emptyScreen">
+        <h2 class="text-xl md:text-4xl font-secondary-inverse capitalize">{{header}}</h2>
     </div>
     <div class="body">
         <div class="loader flex flex-col items-center justify-center fadeIn" *ngIf="loadingProducts">
@@ -16,7 +16,7 @@
             <div class="flex py-4 mb-4 items-center justify-between flex-wrap">
                 <div class="age">
                     <div class="py-2">
-                        <h3 class="text-secondary-inverse">Whats the age of your loved one?</h3>
+                        <h3 class="text-secondary-inverse">Age of the recipient?</h3>
                     </div>
                     <div class="flex items-center">
 
@@ -32,7 +32,7 @@
             <div class="flex py-2 mb-4 items-center justify-between flex-wrap">
                 <div class="age">
                     <div class="py-2">
-                        <h3 class="text-secondary-inverse">What is your budget?</h3>
+                        <h3 class="text-secondary-inverse">Budget?</h3>
                     </div>
                     <div class="flex items-center">
 
@@ -67,7 +67,7 @@
             <div class="flex py-4 mb-4 items-center">
                 <div class="gender mr-2">
                     <div class="py-2">
-                        <h3 class="text-secondary-inverse">Whats the gender of your loved one?</h3>
+                        <h3 class="text-secondary-inverse">Gender of the recipient?</h3>
                     </div>
                     <mat-chip-listbox class="options flex" aria-label="Gender selection" [(ngModel)]="gender">
                         <mat-chip-option [ngClass]="gender == obj ? 'selected' :'chip'" *ngFor="let obj of genders">
@@ -79,7 +79,7 @@
             <div class="flex py-4 mb-4 items-center">
                 <div class="relationship">
                     <div class="py-2">
-                        <h3 class="text-secondary-inverse">What is your relationship with the recipient?</h3>
+                        <h3 class="text-secondary-inverse">Relationship with the recipient?</h3>
                     </div>
                     <mat-chip-listbox class="options flex" aria-label="relationship selection"
                         [(ngModel)]="relationship">
@@ -95,7 +95,7 @@
             <div class="flex py-4 mb-4 items-center">
                 <div class="occassion">
                     <div class="py-2">
-                        <h3 class="text-secondary-inverse">What is the occassion?</h3>
+                        <h3 class="text-secondary-inverse">Occassion?</h3>
                     </div>
                     <mat-chip-listbox class="options flex" aria-label="Occasions selection" [(ngModel)]="occasion"
                         selectable multiple>
@@ -111,7 +111,7 @@
             <div class="flex py-4 mb-4 items-center">
                 <div class="interest">
                     <div class="py-2">
-                        <h3 class="text-secondary-inverse">What are the recipient's interests?</h3>
+                        <h3 class="text-secondary-inverse">Recipient's interests?</h3>
                     </div>
                     <mat-chip-listbox class="options flex" aria-label="interests selection" [(ngModel)]="interest"
                         selectable multiple>
@@ -134,9 +134,9 @@
 
         </div>
 
-        <div class="other-section flex flex-col py-4 flex items-center justify-center"
+        <div class="other-section flex flex-col py-4 flex items-center md:justify-center"
             *ngIf="!loadingProducts && otherProducts && !emptyScreen">
-            <h2 class="text-3xl md:text-4xl font-secondary-inverse capitalize">Other products you may like:</h2>
+            <h2 class="text-xl md:text-4xl font-secondary-inverse capitalize">Other products you may like:</h2>
             <div class="products-section flex flex-wrap w-full py-4 overflow-hidden fadeIn justify-center">
 
                 <div class="card-container mr-6 md:mr-8 mb-8" *ngFor="let product of otherProducts;let last = last">
