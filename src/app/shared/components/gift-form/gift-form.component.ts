@@ -108,8 +108,10 @@ export class GiftFormComponent implements OnInit {
 
   setHeader() {
     this.header = '';
-    this.header += this.getOccassion() != 'any' ? this.getOccassion() + ' gifts for ' : 'Gifts for ';
-    this.header += this.getRelation() != 'any' ? this.getRelation() + '' : '';
+    this.header += this.getOccassion() != 'any' ? this.getOccassion() + ' gifts' : 'Gifts';
+    let gender = this.gender != 'any' ? this.gender : ''
+    let relation = this.getRelation() != 'any' ? this.getRelation() + '' : ''
+    this.header += relation ? ' for ' + relation : (gender != '' ? ' for ' + gender : '');
     this.header = (this.header.length > 0 && this.header) || 'Top Recommendations';
   }
 

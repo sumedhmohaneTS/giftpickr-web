@@ -1,6 +1,6 @@
 <div class="gift-form w-full h-full">
     <div class="header mb-8 flex items-center" [class.md:justify-center]="products || emptyScreen">
-        <h2 class="text-xl md:text-4xl font-secondary-inverse capitalize">{{header}}</h2>
+        <h2 class="text-xl md:text-3xl font-secondary-inverse capitalize">{{header}}</h2>
     </div>
     <div class="body">
         <div class="loader flex flex-col items-center justify-center fadeIn" *ngIf="loadingProducts">
@@ -126,20 +126,20 @@
             </div>
         </div>
 
-        <div class="products-section flex flex-wrap w-full overflow-hidden fadeIn justify-center"
+        <div class="products-section flex flex-wrap w-full overflow-hidden fadeIn justify-around md:justify-center"
             *ngIf="!loadingProducts && products && !emptyScreen">
-            <div class="card-container mr-6 md:mr-8 mb-8" *ngFor="let product of products;let last = last">
+            <div class="card-container md:mr-8 mb-8" *ngFor="let product of products;let last = last">
                 <app-product-card [productData]="product"></app-product-card>
             </div>
 
         </div>
 
-        <div class="other-section flex flex-col py-4 flex items-center md:justify-center"
+        <div class="other-section flex flex-col py-4 flex items-center justify-around md:justify-center"
             *ngIf="!loadingProducts && otherProducts && !emptyScreen">
-            <h2 class="text-xl md:text-4xl font-secondary-inverse capitalize">Other products you may like:</h2>
+            <h2 class="text-xl md:text-3xl font-secondary-inverse capitalize">Other products you may like:</h2>
             <div class="products-section flex flex-wrap w-full py-4 overflow-hidden fadeIn justify-center">
 
-                <div class="card-container mr-6 md:mr-8 mb-8" *ngFor="let product of otherProducts;let last = last">
+                <div class="card-container md:mr-8 mb-8" *ngFor="let product of otherProducts;let last = last">
                     <app-product-card [productData]="product"></app-product-card>
                 </div>
 
