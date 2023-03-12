@@ -22,6 +22,8 @@ export class GiftFormComponent implements OnInit {
   ];
   ogPriceObj: any = { id: 1, min: undefined, max: undefined };
   price: any = this.ogPriceObj;
+  selectedPriceId = this.price.id;
+
   gender = 'any';
   occasion: any = 'any'
   relationship: any = 'any';
@@ -34,8 +36,12 @@ export class GiftFormComponent implements OnInit {
 
   loadingProducts = false;
   products: any;
+  emptyScreen = false;
+
+
   @ViewChild('slider') slider: any;
   otherProducts: any;
+
 
   constructor(private service: GiftFormService,
     private seoService: SeoService) {
@@ -43,6 +49,7 @@ export class GiftFormComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    console.log('init');
     this.seoService.update({
       title: 'GiftPickr - Lets pick the perfect gift!',
       description: 'Find the perfect gift for any occasion with GiftPickr.com. Our gift recommendation system makes gift-giving easy and stress-free. Start browsing today!',
@@ -62,6 +69,7 @@ export class GiftFormComponent implements OnInit {
     this.products = undefined;
     this.otherProducts = undefined;
     this.header = 'Lets pick the perfect gift!';
+    this.emptyScreen = false
   }
 
   async submit() {
@@ -85,7 +93,12 @@ export class GiftFormComponent implements OnInit {
       console.log(result);
       this.products = result.data.data.mainProducts;
       this.otherProducts = result.data.data.otherProducts;
-
+      if (!this.products && !this.otherProducts) {
+        this.emptyScreen = true;
+        this.header = 'No results found'
+        this.loadingProducts = false;
+        return;
+      }
       this.setHeader();
     } catch (error) {
       console.error(error);
@@ -105,6 +118,15 @@ export class GiftFormComponent implements OnInit {
   }
   getOccassion() {
     return this.occasion && this.occasion.join && this.occasion.join(',').toLowerCase() || this.occasion;
+  }
+
+  setPrice(obj: { id: any; min: any; max: any; }) {
+    this.price.id = obj.id;
+
+    this.price.min = obj.min;
+
+    this.price.max = obj.max;
+    this.selectedPriceId = this.price.id;
   }
 
 }

@@ -1,5 +1,5 @@
 <div class="gift-form w-full h-full">
-    <div class="header mb-8 flex items-center" [class.justify-center]="products">
+    <div class="header mb-8 flex items-center" [class.justify-center]="products || emptyScreen">
         <h2 class="text-3xl md:text-4xl font-secondary-inverse capitalize">{{header}}</h2>
     </div>
     <div class="body">
@@ -12,7 +12,7 @@
 
             <h3 class="text-secondary-inverse text-xl font-semibold">Picking the perfect gift...</h3>
         </div>
-        <div class="questions flex flex-col fadeIn" *ngIf="!loadingProducts && !products">
+        <div class="questions flex flex-col fadeIn" *ngIf="!loadingProducts && !products && !emptyScreen">
             <div class="flex py-4 mb-4 items-center justify-between flex-wrap">
                 <div class="age">
                     <div class="py-2">
@@ -36,9 +36,10 @@
                     </div>
                     <div class="flex items-center">
 
-                        <mat-chip-listbox class="options flex" aria-label="Price selection" [(ngModel)]="price">
-                            <mat-chip-option [ngClass]="price.id == obj.id ? 'selected' :'chip'" [value]="obj"
-                                *ngFor="let obj of priceList">
+                        <mat-chip-listbox class="options flex" aria-label="Price selection"
+                            [(ngModel)]="selectedPriceId">
+                            <mat-chip-option [ngClass]="selectedPriceId == obj.id ? 'selected' :'chip'" [value]="obj.id"
+                                *ngFor="let obj of priceList" (click)="setPrice(obj)">
                                 <span
                                     class="text-sm text-secondary-inverse tracking-wide capitalize">{{obj.label}}</span>
                             </mat-chip-option>
@@ -49,14 +50,16 @@
                             <mat-label>Min Price</mat-label>
                             <span matPrefix>₹ &nbsp;</span>
                             <input [max]="price.max" type="number" class="bg-dark text-secondary-inverse" matInput
-                                [(ngModel)]="price.min" (click)="price = ogPriceObj" label="Min Price">
+                                [(ngModel)]="price.min" (ngModelChange)="price.id = 1 && selectedPriceId= 1"
+                                label="Min Price">
                         </mat-form-field>
                         to
                         <mat-form-field>
                             <mat-label>Max Price</mat-label>
                             <span matPrefix>₹ &nbsp;</span>
                             <input [min]="price.min" type="number" class="bg-dark text-secondary-inverse" matInput
-                                [(ngModel)]="price.max" (click)="price = ogPriceObj" label="Max Price"></mat-form-field>
+                                [(ngModel)]="price.max" (ngModelChange)="price.id = 1 && selectedPriceId= 1"
+                                label="Max Price"></mat-form-field>
                     </div>
 
                 </div>
@@ -124,7 +127,7 @@
         </div>
 
         <div class="products-section flex flex-wrap w-full overflow-hidden fadeIn justify-center"
-            *ngIf="!loadingProducts && products">
+            *ngIf="!loadingProducts && products && !emptyScreen">
             <div class="card-container mr-6 md:mr-8 mb-8" *ngFor="let product of products;let last = last">
                 <app-product-card [productData]="product"></app-product-card>
             </div>
@@ -132,7 +135,7 @@
         </div>
 
         <div class="other-section flex flex-col py-4 flex items-center justify-center"
-            *ngIf="!loadingProducts && otherProducts">
+            *ngIf="!loadingProducts && otherProducts && !emptyScreen">
             <h2 class="text-3xl md:text-4xl font-secondary-inverse capitalize">Other products you may like:</h2>
             <div class="products-section flex flex-wrap w-full py-4 overflow-hidden fadeIn justify-center">
 
@@ -142,13 +145,19 @@
 
             </div>
         </div>
+        <div class="empty-screen flex items-center justify-center" *ngIf="emptyScreen">
+
+            <img class="w-40 h-auto py-4" src="../../../../assets/svg/404.svg" alt="">
+        </div>
 
     </div>
-    <div class="footer flex py-4 items-center fadeIn" [class.justify-center]="products">
-        <button class="bg-primary py-2 px-6 rounded" (click)="submit()" matRipple *ngIf="!loadingProducts && !products">
+    <div class="footer flex py-4 items-center fadeIn" [class.justify-center]="products || emptyScreen">
+        <button class="bg-primary py-2 px-6 rounded" (click)="submit()" matRipple
+            *ngIf="!loadingProducts && !products && !emptyScreen">
             <span class="text-secondary-inverse">Submit</span>
         </button>
-        <button class="bg-primary py-2 px-6 rounded" (click)="reset()" matRipple *ngIf="!loadingProducts && products">
+        <button class="bg-primary py-2 px-6 rounded" [class.justify-center]="emptyScreen" (click)="reset()" matRipple
+            *ngIf="(!loadingProducts && products) || emptyScreen">
             <span class="text-secondary-inverse">Search Again</span>
         </button>
     </div>
