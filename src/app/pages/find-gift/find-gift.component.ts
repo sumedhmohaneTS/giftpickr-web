@@ -26,7 +26,7 @@ export class FindGiftComponent implements OnInit {
       title: 'Finding the Perfect gift for you',
       description: `Let our AI-powered gift recommendations take the hassle out of picking gifts, and help you find the perfect gift that will bring a smile to your loved one's face.`,
       url: environment.baseUrl + this.router.url,
-      imageUrl: 'https://giftpickr-web.s3.ap-south-1.amazonaws.com/assets/GiftPickr-with-name.png'
+      imageUrl: 'https://giftpickr-web.s3.ap-south-1.amazonaws.com/assets/GiftPickr-cover.png'
     });
   }
 

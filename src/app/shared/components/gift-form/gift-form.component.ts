@@ -57,7 +57,7 @@ export class GiftFormComponent implements OnInit {
       title: 'GiftPickr - Lets pick the perfect gift!',
       description: 'Find the perfect gift for any occasion with GiftPickr.com. Our gift recommendation system makes gift-giving easy and stress-free. Start browsing today!',
       url: environment.baseUrl + this.router.url,
-      imageUrl: 'https://giftpickr-web.s3.ap-south-1.amazonaws.com/assets/GiftPickr-with-name.png'
+      imageUrl: 'https://giftpickr-web.s3.ap-south-1.amazonaws.com/assets/GiftPickr-cover.png'
     });
   }
 

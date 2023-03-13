@@ -15,7 +15,8 @@ export class NotFoundComponent implements OnInit {
 
   public ngOnInit(): void {
     this.seoService.update({
-      title: 'Page Not Found | GiftPickr'
+      title: 'Page Not Found | GiftPickr',
+      imageUrl: 'https://giftpickr-web.s3.ap-south-1.amazonaws.com/assets/GiftPickr-cover.png'
     });
   }
 
