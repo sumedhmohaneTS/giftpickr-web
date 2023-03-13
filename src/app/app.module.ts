@@ -9,7 +9,7 @@ import { DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // External modules
-
+import { TransferHttpCacheModule } from '@nguniversal/common';
 // Internal modules
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
@@ -29,7 +29,7 @@ import { AppComponent } from './app.component';
     HttpClientModule,
     BrowserAnimationsModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
-
+    TransferHttpCacheModule,
     // External modules
 
     // Internal modules

@@ -1,6 +1,6 @@
 // Angular modules
-import { LocationStrategy } from '@angular/common';
-import { Component } from '@angular/core';
+import { isPlatformBrowser, LocationStrategy } from '@angular/common';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SeoService } from 'src/app/shared/seo/seo.service';
@@ -17,7 +17,7 @@ export class HomeV2Component implements OnInit {
   fileNo: any = 1;
   interval: any;
 
-  constructor(private router: Router,
+  constructor(@Inject(PLATFORM_ID) private _platformId: Object, private router: Router,
     private seoService: SeoService) { }
 
 
@@ -35,12 +35,18 @@ export class HomeV2Component implements OnInit {
 
   calculateFileNo() {
     this.fileNo = Math.floor(Math.random() * 5) + 1;
-    this.interval = setInterval(() => {
-      this.fileNo = (this.fileNo % 5) + 1;
-    }, 5000);
+    if (isPlatformBrowser(this._platformId)) {
+      this.interval = setInterval(() => {
+        this.fileNo = (this.fileNo % 5) + 1;
+      }, 5000);
+    }
+
   }
 
   ngOnDestroy() {
-    clearInterval(this.interval);
+    if (isPlatformBrowser(this._platformId)) {
+      clearInterval(this.interval);
+    }
+
   }
 }

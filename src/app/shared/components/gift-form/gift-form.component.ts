@@ -1,8 +1,10 @@
 // Angular modules
 import { Component, Input, ViewChild } from '@angular/core';
 import { OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SeoService } from '../../seo/seo.service';
 import { GiftFormService } from './gift-form.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-gift-form',
@@ -44,6 +46,7 @@ export class GiftFormComponent implements OnInit {
 
 
   constructor(private service: GiftFormService,
+    private router: Router,
     private seoService: SeoService) {
 
   }
@@ -53,7 +56,7 @@ export class GiftFormComponent implements OnInit {
     this.seoService.update({
       title: 'GiftPickr - Lets pick the perfect gift!',
       description: 'Find the perfect gift for any occasion with GiftPickr.com. Our gift recommendation system makes gift-giving easy and stress-free. Start browsing today!',
-      url: window.location.href,
+      url: environment.baseUrl + this.router.url,
       imageUrl: 'https://giftpickr-web.s3.ap-south-1.amazonaws.com/assets/GiftPickr-with-name.png'
     });
   }

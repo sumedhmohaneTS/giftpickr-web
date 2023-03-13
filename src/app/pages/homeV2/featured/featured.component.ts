@@ -1,12 +1,17 @@
 // Angular modules
-import { ChangeDetectorRef, Component, ElementRef, HostListener, OnDestroy, ViewChild } from '@angular/core';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, HostListener, Inject, OnDestroy, PLATFORM_ID, ViewChild } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { HomeV2Service } from '../homeV2.service';
+import { TransferState, makeStateKey } from '@angular/platform-browser';
+import { firstValueFrom, isObservable, Observable, of } from 'rxjs';
+
+declare const Zone: any;
 
 @Component({
   selector: 'app-featured',
   templateUrl: './featured.component.html',
-  styleUrls: ['./featured.component.scss']
+  styleUrls: ['./featured.component.scss'],
 })
 export class FeaturedComponent implements OnInit, OnDestroy {
 
@@ -18,25 +23,53 @@ export class FeaturedComponent implements OnInit, OnDestroy {
   isAtEnd: boolean = false;
   scrollTimeout: any;
 
-  constructor(private service: HomeV2Service,
+  constructor(@Inject(PLATFORM_ID) private _platformId: Object,
+    private state: TransferState,
+    private service: HomeV2Service,
     private cdr: ChangeDetectorRef) {
   }
 
 
-  public ngOnInit(): void {
-    this.getFeaturedProducts();
+  ngOnInit() {
+    // await this.getFeaturedProducts();
+    this.waitFor(this.getFeaturedProducts())
+
+
+  }
+
+  async waitFor<T>(prom: Promise<T> | Observable<T>): Promise<T> {
+    if (isObservable(prom)) {
+      prom = firstValueFrom(prom);
+    }
+    const macroTask = Zone.current
+      .scheduleMacroTask(
+        `WAITFOR-${Math.random()}`,
+        () => { },
+        {},
+        () => { }
+      );
+    return prom.then((p: T) => {
+      macroTask.invoke();
+      return p;
+    });
   }
 
   ngAfterViewInit() {
 
     this.checkScrollable();
     const cardList = this.cardListRef.nativeElement;
-    cardList.addEventListener('scroll', () => {
-      this.checkIfAtStartOrEnd();
-    });
+    if (isPlatformBrowser(this._platformId)) {
+      cardList.addEventListener('scroll', () => {
+        this.checkIfAtStartOrEnd();
+      });
+    }
+
   }
 
   private checkScrollable() {
+    if (isPlatformServer(this._platformId)) {
+      return;
+    }
     const cardList = this.cardListRef.nativeElement;
     const cardContainer = cardList.parentElement;
 
@@ -53,13 +86,33 @@ export class FeaturedComponent implements OnInit, OnDestroy {
     });
   }
 
-  async getFeaturedProducts() {
+  async getFeaturedProducts(): Promise<any> {
+    // const KEY_NAME = makeStateKey('getFeaturedProducts');
+    // const featuredProducts = this.state.get(KEY_NAME, null as any);
+    // if (featuredProducts) {
+    //   this.postFetchProducts();
+    //   return
+    // }
+
     const response = await this.service.getFeaturedProducts();
     this.featuredProducts = response && response.data && response.data.data || [];
-    this.featuredProducts = response.data.data.slice(0, 3);
+    this.featuredProducts = response.data.data.slice(0, 6);
+    // this.state.set(KEY_NAME, response && response.data && response.data.data || [] as any);
 
     this.dataLoaded = true;
-    setTimeout(() => this.checkScrollable(), 0);
+    if (isPlatformBrowser(this._platformId)) {
+      setTimeout(() => this.checkScrollable(), 0);
+    }
+
+    this.checkScrollable();
+  }
+
+  postFetchProducts() {
+    this.dataLoaded = true;
+    if (isPlatformBrowser(this._platformId)) {
+      setTimeout(() => this.checkScrollable(), 0);
+    }
+
     this.checkScrollable();
   }
 
@@ -70,9 +123,12 @@ export class FeaturedComponent implements OnInit, OnDestroy {
       behavior: 'smooth'
     });
 
-    setTimeout(() => {
-      this.checkIfAtStartOrEnd();
-    }, 0);
+    if (isPlatformBrowser(this._platformId)) {
+      setTimeout(() => {
+        this.checkIfAtStartOrEnd();
+      }, 0);
+    }
+
 
   }
 
