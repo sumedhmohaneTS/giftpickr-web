@@ -9,7 +9,7 @@ const host = 'giftpickr.com';
 const port = '';
 const path = '/api/';
 
-const baseUrl = scheme + host + port + path;
+const baseUrl = scheme + host + port;
 
 export const environment = {
   production: true,
