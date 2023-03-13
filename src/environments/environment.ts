@@ -18,7 +18,7 @@ const host = 'giftpickr.com';
 const port = '';
 const path = '/api/';
 
-const baseUrl = scheme + host + port + path;
+const baseUrl = scheme + host + port;
 
 export const environment = {
   production: false,
@@ -26,7 +26,8 @@ export const environment = {
   appName: 'GiftPickr',
   envName: EnvName.LOCAL,
   defaultLanguage: 'en',
-  apiBaseUrl: baseUrl,
+  apiBaseUrl: baseUrl + path,
+  baseUrl: baseUrl,
 };
 
 /*

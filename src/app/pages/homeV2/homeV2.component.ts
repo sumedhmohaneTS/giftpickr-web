@@ -2,8 +2,10 @@
 import { LocationStrategy } from '@angular/common';
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SeoService } from 'src/app/shared/seo/seo.service';
 import { HomeV2Service } from './homeV2.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-homeV2',
@@ -15,16 +17,18 @@ export class HomeV2Component implements OnInit {
   fileNo: any = 1;
   interval: any;
 
-  constructor(private seoService: SeoService) { }
+  constructor(private router: Router,
+    private seoService: SeoService) { }
 
 
   public ngOnInit(): void {
     this.calculateFileNo();
 
+    console.log(environment.baseUrl + this.router.url);
     this.seoService.update({
       title: 'GiftPickr - Lets pick a gift for your loved ones',
       description: 'Find the perfect gift for any occasion with GiftPickr.com. Our gift recommendation system makes gift-giving easy and stress-free. Start browsing today!',
-      url: window.location.href,
+      url: environment.baseUrl + this.router.url,
       imageUrl: 'https://giftpickr-web.s3.ap-south-1.amazonaws.com/assets/GiftPickr-with-name.png'
     });
   }

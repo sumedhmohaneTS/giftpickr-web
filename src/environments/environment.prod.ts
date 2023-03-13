@@ -17,5 +17,6 @@ export const environment = {
   appName: 'GiftPickr',
   envName: EnvName.PROD,
   defaultLanguage: 'en',
-  apiBaseUrl: baseUrl,
+  apiBaseUrl: baseUrl + path,
+  baseUrl: baseUrl,
 };

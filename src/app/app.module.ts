@@ -28,7 +28,7 @@ import { AppComponent } from './app.component';
     // Angular modules
     HttpClientModule,
     BrowserAnimationsModule,
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
 
     // External modules
 

@@ -6,25 +6,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 // External modules
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-// Components
-import { ToastComponent } from './components/blocks/toast/toast.component';
-import { ProgressBarComponent } from './components/blocks/progress-bar/progress-bar.component';
-
-// Forms
-import { FormConfirmComponent } from './components/forms/form-confirm/form-confirm.component';
-
+// Components 
+// Forms 
 // Modals
-import { ModalWrapperComponent } from './components/modals/modal-wrapper/modal-wrapper.component';
 
 // Layouts
 import { LayoutHeaderComponent } from './components/layouts/layout-header/layout-header.component';
 
 // Pipes
 
-// Directives
-import { ModalWrapperDirective } from './directives/modal-wrapper.directive';
+// Directives 
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { LayoutFooterComponent } from '@layouts/layout-footer/layout-footer.component';
@@ -35,7 +27,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatRippleModule } from '@angular/material/core';
 import { GiftFormService } from './components/gift-form/gift-form.service';
-import { NgxTextOverflowClampModule } from 'ngx-text-overflow-clamp';
+
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
 
@@ -48,28 +40,23 @@ import { MatInputModule } from '@angular/material/input';
       FormsModule,
       ReactiveFormsModule,
       SeoModule,
-      // External modules
-      NgbModule,
+      // External modules 
+
       AngularSvgIconModule.forRoot(),
       MatSliderModule,
       MatChipsModule,
       MatRippleModule,
-      NgxTextOverflowClampModule,
       MatTooltipModule,
       MatInputModule,
     ],
   declarations:
     [
-      // Components
-      ToastComponent,
-      ProgressBarComponent,
+      // Components 
       ProductCardComponent,
       GiftFormComponent,
-      // Forms
-      FormConfirmComponent,
+      // Forms 
 
       // Modals
-      ModalWrapperComponent,
 
       // Layouts
       LayoutHeaderComponent,
@@ -77,8 +64,7 @@ import { MatInputModule } from '@angular/material/input';
 
       // Pipes
 
-      // Directives
-      ModalWrapperDirective
+      // Directives 
     ],
   exports:
     [
@@ -89,18 +75,16 @@ import { MatInputModule } from '@angular/material/input';
       ReactiveFormsModule,
       SeoModule,
       // External modules
-      NgbModule,
+
 
       // Components
-      ToastComponent,
-      ProgressBarComponent,
+
       ProductCardComponent,
       GiftFormComponent,
       // Forms
-      FormConfirmComponent,
+
 
       // Modals
-      ModalWrapperComponent,
 
       // Layouts
       LayoutHeaderComponent,
@@ -108,7 +92,7 @@ import { MatInputModule } from '@angular/material/input';
       // Pipes
 
       // Directives
-      ModalWrapperDirective
+
     ],
   providers:
     [
