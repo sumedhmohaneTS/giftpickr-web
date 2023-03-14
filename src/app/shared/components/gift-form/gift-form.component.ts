@@ -53,12 +53,6 @@ export class GiftFormComponent implements OnInit {
 
   public ngOnInit(): void {
     console.log('init');
-    this.seoService.update({
-      title: 'GiftPickr - Lets pick the perfect gift!',
-      description: 'Find the perfect gift for any occasion with GiftPickr.com. Our gift recommendation system makes gift-giving easy and stress-free. Start browsing today!',
-      url: environment.baseUrl + this.router.url,
-      imageUrl: 'https://giftpickr-web.s3.ap-south-1.amazonaws.com/assets/GiftPickr-cover.png'
-    });
   }
 
   change() {
@@ -139,6 +133,13 @@ export class GiftFormComponent implements OnInit {
   }
 
   setPrice(obj: { id: any; min: any; max: any; }) {
+    if (this.price.id == obj.id) {
+      this.price.id = 1;
+      this.price.min = undefined;
+      this.price.max = undefined;
+      this.selectedPriceId = 1;
+      return;
+    }
     this.price.id = obj.id;
 
     this.price.min = obj.min;

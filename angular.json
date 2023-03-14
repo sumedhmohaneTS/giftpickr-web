@@ -152,7 +152,8 @@
           "options": {
             "routes": [
               "/",
-              ""
+              "",
+              "/recommend"
             ]
           },
           "configurations": {

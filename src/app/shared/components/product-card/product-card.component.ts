@@ -11,6 +11,8 @@ export class ProductCardComponent implements OnInit {
 
   @Input() productData: any;
 
+  math = Math;
+
   constructor() {
 
   }
