@@ -1,0 +1,54 @@
+@import 'variables.scss';
+
+.bg-dark {
+    background: $secondary;
+}
+
+.bg-light {
+    background: $secondary-inverse;
+}
+
+.font-special {
+    font-family: 'Josefin Sans';
+}
+
+.text-primary {
+    color: $primary;
+}
+
+.text-secondary {
+    color: $secondary;
+}
+
+.text-secondary-inverse {
+    color: $secondary-inverse;
+}
+
+
+.bg-black-gradient {
+    background: linear-gradient(180deg, $secondary 0, #222 100%);
+}
+
+.white-text {
+    color: $secondary-inverse;
+    transition: 0.2s ease-in-out all;
+
+    &:hover {
+        color: white;
+    }
+}
+
+.hide-scroll {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+
+    /* Firefox */
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.bg-primary {
+    background-color: $primary;
+}
