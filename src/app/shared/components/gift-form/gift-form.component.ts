@@ -1,5 +1,5 @@
 // Angular modules
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, ViewChild } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SeoService } from '../../seo/seo.service';
@@ -11,12 +11,12 @@ import { environment } from '../../../../environments/environment';
   templateUrl: './gift-form.component.html',
   styleUrls: ['./gift-form.component.scss']
 })
-export class GiftFormComponent implements OnInit {
+export class GiftFormComponent implements OnInit, OnDestroy {
 
   header = 'Lets pick the perfect gift!';
   age: any = 18;
   priceList: any = [
-    { id: 2, min: 0, max: 1000, label: 'Under 1000' },
+    { id: 2, min: 0, max: 1000, label: 'Under ₹1000' },
     { id: 3, min: 1000, max: 5000, label: '₹1000 - ₹5000' },
     { id: 4, min: 5000, max: 10000, label: '₹5000 - ₹10000' },
     { id: 5, min: 10000, max: 20000, label: '₹10000 - ₹20000' },
@@ -28,13 +28,20 @@ export class GiftFormComponent implements OnInit {
 
   gender = 'any';
   occasion: any = 'any'
-  relationship: any = 'any';
-  interest: any = 'any';
+  relationship: any = '';
+  interest: any = '';
 
   genders = ['Male', 'Female', 'Prefer not to say'];
-  occasions = 'christmas,birthday,wedding,anniversary,graduation,valentine,mothers day,fathers day,rakhi,diwali'.split(',').sort();
-  relationships = 'friend,father,mother,husband,wife,child,brother,sister,boyfriend,girlfriend'.split(',').sort();
+  occasions = 'christmas,birthday,wedding,anniversary,graduation,valentine,mothers day,fathers day,rakhi,diwali,casual'.split(',').sort();
+  relationships = 'friend,father,mother,husband,wife,child,brother,sister,boyfriend,girlfriend,nephew,niece,uncle,aunty'.split(',').sort();
+  ogRelationships = [...this.relationships].sort();
   interests = 'sports,technology,travel,books,food,gaming,fashion,home,art,music,wellness,automobile'.split(',').sort();
+
+  default = {
+    interests: 'technology,travel,home,books,food,fashion,wellness'.split(','),
+    occasion: 'birthday',
+    relationship: 'any'
+  };
 
   loadingProducts = false;
   products: any;
@@ -53,6 +60,23 @@ export class GiftFormComponent implements OnInit {
 
   public ngOnInit(): void {
     console.log('init');
+  }
+
+  ngOnDestroy() {
+    this.reset();
+  }
+
+  changeRelationship() {
+    if (!this.gender || !this.gender.length) {
+      this.relationships = this.ogRelationships;
+    }
+
+
+    if (this.gender.toLowerCase() == 'male') {
+      this.relationships = 'friend,father,husband,child,brother,boyfriend,nephew,uncle'.split(',').sort()
+    } else if (this.gender.toLowerCase() == 'female') {
+      this.relationships = 'friend,mother,wife,child,sister,girlfriend,niece,aunty'.split(',').sort()
+    }
   }
 
   change() {
@@ -113,23 +137,34 @@ export class GiftFormComponent implements OnInit {
   }
 
   getRelation() {
+    let relationship = this.relationship;
     if (this.relationship.length == 0) {
-      this.relationship = 'any'
+      relationship = this.default.relationship;
     }
-    return this.relationship && this.relationship.join && this.relationship.join(',').toLowerCase() || this.relationship;
+    return relationship;
   }
   getOccassion() {
     if (this.occasion.length == 0) {
-      this.occasion = 'any'
+      this.occasion = this.default.occasion;
     }
+
     return this.occasion && this.occasion.join && this.occasion.join(',').toLowerCase() || this.occasion;
   }
 
   getInterest() {
-    if (this.interest.length == 0) {
-      this.interest = 'any'
+    let interest: any;
+    if (!this.interest || !this.interest.length) {
+      interest = this.default.interests;
+      if (this.gender.toLowerCase() == 'male') {
+        interest = 'sports,technology,travel,books,food,gaming,fashion,home,music,wellness,automobile';
+      } else if (this.gender.toLowerCase() == 'female') {
+        interest = 'travel,books,food,fashion,home,music,wellness';
+      }
+    } else {
+      interest = this.interest;
     }
-    return this.interest && this.interest.join && this.interest.join(',').toLowerCase() || 'any'
+
+    return interest && interest.join && interest.join(',').toLowerCase() || interest
   }
 
   setPrice(obj: { id: any; min: any; max: any; }) {

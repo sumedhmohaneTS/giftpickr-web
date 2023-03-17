@@ -69,7 +69,8 @@
                     <div class="py-2">
                         <h3 class="text-secondary-inverse">Gender of the recipient?</h3>
                     </div>
-                    <mat-chip-listbox class="options flex" aria-label="Gender selection" [(ngModel)]="gender">
+                    <mat-chip-listbox class="options flex" aria-label="Gender selection" [(ngModel)]="gender"
+                        (ngModelChange)="changeRelationship()">
                         <mat-chip-option [ngClass]="gender == obj ? 'selected' :'chip'" *ngFor="let obj of genders">
                             <span class="text-sm text-secondary-inverse tracking-wide capitalize">{{obj}}</span>
                         </mat-chip-option>

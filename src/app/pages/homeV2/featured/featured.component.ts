@@ -97,7 +97,7 @@ export class FeaturedComponent implements OnInit, OnDestroy {
 
     const response = await this.service.getFeaturedProducts();
     this.featuredProducts = response && response.data && response.data.data || [];
-    this.featuredProducts = response.data.data.slice(0, 6);
+    // this.featuredProducts = response.data.data.slice(0, 6);
     this.state.set(KEY_NAME, this.featuredProducts as any);
 
     this.postFetchProducts();
