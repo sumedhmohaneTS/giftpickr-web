@@ -50,7 +50,8 @@ export class GiftFormComponent implements OnInit, OnDestroy {
 
   @ViewChild('slider') slider: any;
   otherProducts: any;
-
+  productsByCategory: any = {};
+  recommendedCategories: any[] = [];
 
   constructor(private service: GiftFormService,
     private router: Router,
@@ -114,6 +115,7 @@ export class GiftFormComponent implements OnInit, OnDestroy {
       console.log(result);
       this.products = result.data.data.mainProducts;
       this.otherProducts = result.data.data.otherProducts;
+      this.categorizeProducts();
       if (!this.products && !this.otherProducts) {
         this.emptyScreen = true;
         this.header = 'No results found'
@@ -125,6 +127,19 @@ export class GiftFormComponent implements OnInit, OnDestroy {
       console.error(error);
     }
     this.loadingProducts = false;
+  }
+
+  categorizeProducts() {
+    this.products.forEach((product: any) => {
+      const categoryName: string = product.categoryName;
+      if (this.productsByCategory[categoryName] == undefined) {
+        this.productsByCategory[categoryName] = [];
+        this.recommendedCategories.push(categoryName);
+      }
+      this.productsByCategory[categoryName].push(product)
+    });
+    console.log(this.recommendedCategories);
+    console.log(this.productsByCategory);
   }
 
   setHeader() {

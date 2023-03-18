@@ -30,6 +30,7 @@ import { GiftFormService } from './components/gift-form/gift-form.service';
 
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
+import { ProductRowsComponent } from './components/product-rows/product-rows.component';
 
 @NgModule({
   imports:
@@ -54,6 +55,7 @@ import { MatInputModule } from '@angular/material/input';
       // Components 
       ProductCardComponent,
       GiftFormComponent,
+      ProductRowsComponent,
       // Forms 
 
       // Modals
@@ -81,6 +83,7 @@ import { MatInputModule } from '@angular/material/input';
 
       ProductCardComponent,
       GiftFormComponent,
+      ProductRowsComponent,
       // Forms
 
 

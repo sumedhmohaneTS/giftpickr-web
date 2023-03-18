@@ -129,9 +129,14 @@
 
         <div class="products-section flex flex-wrap w-full overflow-hidden fadeIn justify-around md:justify-center"
             *ngIf="!loadingProducts && products && !emptyScreen">
-            <div class="card-container md:mr-8 mb-8" *ngFor="let product of products;let last = last">
-                <app-product-card [productData]="product"></app-product-card>
+
+            <div class="w-full overflow-hidden" *ngFor="let category of recommendedCategories">
+                <app-product-rows [title]="category" [products]="productsByCategory[category]"></app-product-rows>
             </div>
+
+            <!-- <div class="card-container md:mr-8 mb-8" *ngFor="let product of products;let last = last">
+                <app-product-card [productData]="product"></app-product-card>
+            </div> -->
 
         </div>
 

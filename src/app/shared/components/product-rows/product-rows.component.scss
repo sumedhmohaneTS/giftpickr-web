@@ -1,0 +1,54 @@
+.product-rows {
+    .title {
+        min-width: 10rem;
+    }
+
+    .left-arrow,
+    .right-arrow {
+        width: 150px;
+        height: 100%;
+
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 150px;
+            /* Adjust as per your requirement */
+            background: linear-gradient(to left, rgba(255, 255, 255, 0), #191414);
+            pointer-events: none;
+            /* This is important to enable clicking on the arrow button */
+
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            bottom: 0;
+            width: 60px;
+            height: 60px;
+            background-color: #333;
+            z-index: 10;
+            border-radius: 50%;
+        }
+    }
+
+    .left-arrow {
+        &::before {
+            background: linear-gradient(to left, rgba(255, 255, 255, 0), #191817);
+        }
+
+
+    }
+
+    .right-arrow {
+        &::before {
+            background: linear-gradient(to right, rgba(255, 255, 255, 0), #191817);
+        }
+
+    }
+}
