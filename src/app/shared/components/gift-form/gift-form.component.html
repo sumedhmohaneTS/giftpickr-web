@@ -120,13 +120,13 @@
             <div class="flex py-4 mb-4 items-center">
                 <div class="interest">
                     <div class="py-2">
-                        <h3 class="text-secondary-inverse">Recipient's interests?</h3>
+                        <h3 class="text-secondary-inverse">You would define the recipient as ?</h3>
                     </div>
                     <mat-chip-listbox class="options flex" aria-label="interests selection" [(ngModel)]="interest"
                         selectable multiple>
-                        <mat-chip-option [ngClass]="interest.indexOf(obj) == -1 ? 'chip' :'selected'"
-                            *ngFor="let obj of interests">
-                            <span class="text-sm text-secondary-inverse tracking-wide capitalize">{{obj}}</span>
+                        <mat-chip-option [ngClass]="interest.indexOf(obj.value) == -1 ? 'chip' :'selected'"
+                            *ngFor="let obj of interestLabelMap" [value]="obj.value">
+                            <span class="text-sm text-secondary-inverse tracking-wide capitalize">{{obj.label}}</span>
                         </mat-chip-option>
 
                     </mat-chip-listbox>

@@ -37,6 +37,45 @@ export class GiftFormComponent implements OnInit, OnDestroy {
   ogRelationships = [...this.relationships].sort();
   interests = 'sports,technology,travel,books,food,gaming,fashion,home,art,music,wellness,automobile'.split(',').sort();
 
+  interestLabelMap = [{
+    label: 'Sports Freak',
+    value: 'sports'
+  }, {
+    label: 'Techno Geek',
+    value: 'technology'
+  }, {
+    label: 'Traveller',
+    value: 'travel'
+  }, {
+    label: 'Book Lover',
+    value: 'books'
+  }, {
+    label: 'Foodie',
+    value: 'food'
+  }, {
+    label: 'Gamer',
+    value: 'gaming'
+  }, {
+    label: 'Fashionista',
+    value: 'fashion'
+  }, {
+    label: 'Couch Potato',
+    value: 'home'
+  }, {
+    label: 'Artist',
+    value: 'art'
+  }, {
+    label: 'Music Lover',
+    value: 'music'
+  }, {
+    label: 'Hygienic',
+    value: 'wellness'
+  }, {
+    label: 'Motorhead',
+    value: 'automobile'
+  }].sort((a, b) => a.label.toLowerCase() >= b.label.toLowerCase() ? 1 : -1);
+
+
   default = {
     interests: 'technology,travel,home,books,food,fashion,wellness'.split(','),
     occasion: 'birthday',
