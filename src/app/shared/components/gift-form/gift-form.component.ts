@@ -52,6 +52,7 @@ export class GiftFormComponent implements OnInit, OnDestroy {
   otherProducts: any;
   productsByCategory: any = {};
   recommendedCategories: any[] = [];
+  selectedCategory: any;
 
   constructor(private service: GiftFormService,
     private router: Router,
@@ -92,6 +93,10 @@ export class GiftFormComponent implements OnInit, OnDestroy {
     this.otherProducts = undefined;
     this.header = 'Lets pick the perfect gift!';
     this.emptyScreen = false
+
+    this.productsByCategory = {};
+    this.recommendedCategories = [];
+    this.selectedCategory = undefined;
   }
 
   async submit() {
@@ -130,13 +135,17 @@ export class GiftFormComponent implements OnInit, OnDestroy {
   }
 
   categorizeProducts() {
+    if (!this.products) {
+      return;
+    }
+    this.selectedCategory = this.products[0]?.categoryName;
     this.products.forEach((product: any) => {
       const categoryName: string = product.categoryName;
       if (this.productsByCategory[categoryName] == undefined) {
         this.productsByCategory[categoryName] = [];
         this.recommendedCategories.push(categoryName);
       }
-      this.productsByCategory[categoryName].push(product)
+      this.productsByCategory[categoryName].push(product);
     });
     console.log(this.recommendedCategories);
     console.log(this.productsByCategory);

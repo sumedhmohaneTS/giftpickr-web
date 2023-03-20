@@ -11,6 +11,7 @@ import { OnInit } from '@angular/core';
 export class ProductRowsComponent implements OnInit {
 
   @Input() title = '';
+  @Input() scrollable = true;
 
   _products: any = [];
   get products(): any {

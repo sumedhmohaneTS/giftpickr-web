@@ -1,6 +1,14 @@
-<div class="gift-form w-full h-full">
+<div class="gift-form w-full h-full" [class.py-20]="!products">
     <div class="header mb-8 flex items-center" [class.md:justify-center]="products || emptyScreen">
-        <h2 class="text-xl md:text-3xl font-secondary-inverse capitalize">{{header}}</h2>
+
+        <h2 class="text-xl md:text-3xl font-secondary-inverse capitalize flex items-center justify-center">
+            <div class="back-btn mr-4 text-3xl cursor-pointer" *ngIf="products" (click)="reset()">
+                <span class="material-icons">
+                    arrow_back
+                </span>
+            </div>
+            <span>{{header}}</span>
+        </h2>
     </div>
     <div class="body">
         <div class="loader flex flex-col items-center justify-center fadeIn" *ngIf="loadingProducts">
@@ -130,9 +138,28 @@
         <div class="products-section flex flex-wrap w-full overflow-hidden fadeIn justify-around md:justify-center"
             *ngIf="!loadingProducts && products && !emptyScreen">
 
-            <div class="w-full overflow-hidden" *ngFor="let category of recommendedCategories">
-                <app-product-rows [title]="category" [products]="productsByCategory[category]"></app-product-rows>
+            <div class="top-categories flex flex-col items-center justify-center">
+                <h2 class="text-lg md:text-xl font-secondary-inverse capitalize opacity-75 mb-4">Our top picks
+                </h2>
+                <div class="row w-full overflow-x-auto flex flex-wrap">
+                    <div class="top-product cursor-pointer mr-4 flex flex-col items-center justify-center px-4 py-1 bg-dark rounded-full mb-4"
+                        [ngClass]="category == selectedCategory ? 'selected' :'chip'"
+                        *ngFor="let category of recommendedCategories" (click)="selectedCategory = category" matRipple>
+                        <h3 class="font-secondary-inverse capitalize opacity-75 text-sm px-4">{{category}}
+                        </h3>
+
+                    </div>
+                </div>
+
             </div>
+            <div class="w-full" *ngIf="productsByCategory">
+                <app-product-rows [scrollable]="false"
+                    [products]="productsByCategory[selectedCategory] | slice:0:10"></app-product-rows>
+            </div>
+
+            <!-- <div class="w-full overflow-hidden" *ngFor="let category of recommendedCategories">
+                <app-product-rows [title]="category" [products]="productsByCategory[category]"></app-product-rows>
+            </div> -->
 
             <!-- <div class="card-container md:mr-8 mb-8" *ngFor="let product of products;let last = last">
                 <app-product-card [productData]="product"></app-product-card>
