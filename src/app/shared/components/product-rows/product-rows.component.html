@@ -22,7 +22,7 @@
             [class.justify-center]="!(scrollable && isScrollable)" [class.justify-start]="scrollable && isScrollable"
             #cardList>
             <div class="card-container" *ngFor="let product of products;let last = last"
-                [ngClass]=" scrollable && isScrollable ? (last ? 'mr-0' : 'mr-6 md:mr-8') : ('mr-6 md:mr-8')">
+                [ngClass]=" scrollable && isScrollable ? (last ? 'mr-0' : 'mr-4 sm:mr-6 md:mr-10') : ('mr-4 sm:mr-6 md:mr-10')">
                 <app-product-card [productData]="product"></app-product-card>
             </div>
 

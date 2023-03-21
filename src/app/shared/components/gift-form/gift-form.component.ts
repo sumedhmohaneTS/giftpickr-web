@@ -246,4 +246,9 @@ export class GiftFormComponent implements OnInit, OnDestroy {
     this.selectedPriceId = this.price.id;
   }
 
+  scroll(event: any, parent: any) {
+    let el = event.target;
+    if (parent.scrollWidth > parent.clientWidth)
+      el.scrollIntoView({ behavior: "smooth", block: "end", inline: "center" });
+  }
 }

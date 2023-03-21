@@ -46,7 +46,7 @@ export class ProductRowsComponent implements OnInit {
     }
     this.checkScrollable();
     const cardList = this.cardListRef.nativeElement;
-    if (isPlatformBrowser(this._platformId)) {
+    if (isPlatformBrowser(this._platformId) && this.scrollable) {
       cardList.addEventListener('scroll', () => {
         this.checkIfAtStartOrEnd();
       });
@@ -55,7 +55,7 @@ export class ProductRowsComponent implements OnInit {
   }
 
   private checkScrollable() {
-    if (isPlatformServer(this._platformId)) {
+    if (isPlatformServer(this._platformId) || !this.scrollable) {
       return;
     }
     const cardList = this.cardListRef.nativeElement;

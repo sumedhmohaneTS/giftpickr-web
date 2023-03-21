@@ -21,7 +21,7 @@
     <div class="card-list flex items-start   w-full overflow-x-auto hide-scroll"
       [ngClass]="isScrollable ? 'justify-start' : 'justify-center'" #cardList>
       <div class="card-container" *ngFor="let product of featuredProducts;let last = last"
-        [ngClass]="isScrollable ? (last ? 'mr-0' : 'mr-6 md:mr-10') : ('mr-6 md:mr-10')">
+        [ngClass]="isScrollable ? (last ? 'mr-0' : 'mr-4 sm:mr-6 md:mr-10') : ('mr-4 sm:mr-6 md:mr-10')">
         <app-product-card [productData]="product"></app-product-card>
       </div>
 

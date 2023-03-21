@@ -1,14 +1,15 @@
 <a target="_blank" [href]="productData.url">
-    <div class="w-40 md:w-60 h-auto cursor-pointer">
-        <div class="image-section bg-dark overflow-hidden flex items-center justify-center w-full">
+    <div class="w-36 md:w-60 h-auto cursor-pointer">
+        <div class="image-section h-60 md:h-80 bg-dark overflow-hidden flex items-center justify-center w-full">
             <img class="w-auto h-auto max-w-full max-h-full" [src]="productData.imageUrls[0]" alt="">
         </div>
-        <div class="metadata-section py-2">
+        <div class="metadata-section pt-2">
             <div class="category opacity-75 text-sm mb-2">
-                {{productData.categoryName}}
+                <span>{{productData.categoryName}}</span>
+                <span>{{productData.rating}}</span>
             </div>
-            <div class="name" [matTooltip]="productData.name" matTooltipClass="gp-tooltip">
-                {{productData.name | slice:0:70}} <span *ngIf="productData.name.length > 70">...</span>
+            <div class="name text-sm md:text-base" [matTooltip]="productData.name" matTooltipClass="gp-tooltip">
+                {{productData.name | slice:0:50}} <span *ngIf="productData.name.length > 50">...</span>
             </div>
         </div>
         <div class="price-section text-primary text-lg pb-2">

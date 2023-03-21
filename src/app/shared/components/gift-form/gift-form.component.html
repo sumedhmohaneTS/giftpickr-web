@@ -28,8 +28,8 @@
                     </div>
                     <div class="flex items-center">
 
-                        <div class="text-secondary-inverse text-xl font-semibold mr-8">Age: {{age}}</div>
-                        <mat-slider class="w-full age-slider" min="1" max="100" step="1" #slider (change)="change()"
+                        <div class="text-secondary-inverse text-xl font-semibold mr-8 w-20">Age: {{age}}</div>
+                        <mat-slider class="w-full age-slider" min="1" max="80" step="1" #slider (change)="change()"
                             discrete>
                             <input [(ngModel)]="age" matSliderThumb>
                         </mat-slider>
@@ -138,15 +138,21 @@
         <div class="products-section flex flex-wrap w-full overflow-hidden fadeIn justify-around md:justify-center"
             *ngIf="!loadingProducts && products && !emptyScreen">
 
-            <div class="top-categories flex flex-col items-center justify-center">
+            <div
+                class="top-categories w-full flex flex-col items-center justify-center fixed md:relative bottom-0 z-50 bg-dark p-4">
                 <h2 class="text-lg md:text-xl font-secondary-inverse capitalize opacity-75 mb-4">Our top picks
                 </h2>
-                <div class="row w-full overflow-x-auto flex flex-wrap">
-                    <div class="top-product cursor-pointer mr-4 flex flex-col items-center justify-center px-4 py-1 bg-dark rounded-full mb-4"
+                <div class="row py-3 px-3 md:px-0 fadeIn w-full overflow-x-auto flex md:flex-wrap overflow-y-hidden "
+                    #target>
+                    <div class="category-bubble whitespace-nowrap cursor-pointer mr-4  px-4 py-1 bg-dark rounded-full md:mb-4"
                         [ngClass]="category == selectedCategory ? 'selected' :'chip'"
-                        *ngFor="let category of recommendedCategories" (click)="selectedCategory = category" matRipple>
-                        <h3 class="font-secondary-inverse capitalize opacity-75 text-sm px-4">{{category}}
-                        </h3>
+                        *ngFor="let category of recommendedCategories"
+                        (click)="selectedCategory = category;scroll($event, target);">
+                        <div class="flex items-center justify-center" matRipple>
+                            <h3 class="font-secondary-inverse capitalize opacity-75 text-sm px-2 md:px-4">{{category}}
+                            </h3>
+                        </div>
+
 
                     </div>
                 </div>
@@ -172,7 +178,8 @@
             <h2 class="text-xl md:text-3xl font-secondary-inverse capitalize">Other products you may like:</h2>
             <div class="products-section flex flex-wrap w-full py-4 overflow-hidden fadeIn justify-center">
 
-                <div class="card-container md:mr-8 mb-8" *ngFor="let product of otherProducts;let last = last">
+                <div class="card-container mr-4 sm:mr-6 md:mr-10 mb-8"
+                    *ngFor="let product of otherProducts;let last = last">
                     <app-product-card [productData]="product"></app-product-card>
                 </div>
 
