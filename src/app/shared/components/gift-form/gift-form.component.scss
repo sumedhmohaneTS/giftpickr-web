@@ -25,3 +25,14 @@
     width: 53vw;
     max-width: 320px !important;
 }
+
+.top-categories {
+    background: linear-gradient(90deg, $secondary 0, #222 100%);
+    box-shadow: 0 0 0.5rem #666;
+}
+
+@media screen and (min-width: 768px) {
+    .top-categories {
+        background-color: transparent;
+    }
+}
